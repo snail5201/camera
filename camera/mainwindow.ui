@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>789</width>
+    <height>491</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>461</width>
+      <height>351</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>预览</string>
+    </property>
+    <widget class="QCameraViewfinder" name="widget" native="true">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>451</width>
+       <height>331</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>461</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>GroupBox</string>
+    </property>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>71</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>摄像头设备：</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="comboBox_camera">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>20</y>
+       <width>151</width>
+       <height>22</height>
+      </rect>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>20</y>
+      <width>301</width>
+      <height>251</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>截图</string>
+    </property>
+    <widget class="QLabel" name="label_capture">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>281</width>
+       <height>241</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_imageinfo">
+    <property name="geometry">
+     <rect>
+      <x>470</x>
+      <y>290</y>
+      <width>301</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>图片保存为：</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>789</width>
+     <height>23</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_open"/>
+   <addaction name="separator"/>
+   <addaction name="action_close"/>
+   <addaction name="separator"/>
+   <addaction name="action_capture"/>
+   <addaction name="separator"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_open">
+   <property name="text">
+    <string>打开摄像头</string>
+   </property>
+  </action>
+  <action name="action_close">
+   <property name="text">
+    <string>关闭摄像头</string>
+   </property>
+  </action>
+  <action name="action_capture">
+   <property name="text">
+    <string>抓图</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QCameraViewfinder</class>
+   <extends>QWidget</extends>
+   <header>qcameraviewfinder.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
