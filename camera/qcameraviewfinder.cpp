@@ -17,7 +17,7 @@ void QmyCursor::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
-    QPainter painter(this);
+    QPainter painter(this);		//添加this，否则报错"....not active"
     painter.setWindow(0,0,20,20);
 
     QPen pen;
@@ -39,5 +39,5 @@ void QmyCursor::paintEvent(QPaintEvent *event)
 
 void QmyCursor::disp()
 {
-    update();
+    update();	//与repaint()用法一样，进一步调用paintEvent()虚函数
 }
