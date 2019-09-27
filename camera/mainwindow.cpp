@@ -1,6 +1,10 @@
 ﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include<QCameraInfo>
+#include<QDir>
+#include<QFileDialog>
+//#include<stdio.h>
+#include<QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -9,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->widget_2->disp();
     //将QLabel加入到静态状态栏中
     LabCameraState = new QLabel(QStringLiteral("摄像头状态："));
     LabCameraState->setMinimumWidth(150);
@@ -58,10 +63,10 @@ void MainWindow::inicamera(QList<QCameraInfo>  cameras)
 #endif
 
 
-    connect(cameralist[0],SIGNAL(stateChanged(QCamera::State)),
+    /*connect(cameralist[0],SIGNAL(stateChanged(QCamera::State)),
             this,SLOT(on_cameraStateChanged(QCamera::State)));
     connect(cameralist[1],SIGNAL(stateChanged(QCamera::State)),
-            this,SLOT(on_cameraStateChanged(QCamera::State)));
+            this,SLOT(on_cameraStateChanged(QCamera::State)));*/
 }
 
 void MainWindow::on_cameraStateChanged(QCamera::State state)
@@ -84,8 +89,12 @@ void MainWindow::on_cameraStateChanged(QCamera::State state)
 void MainWindow::on_action_open_triggered()
 {
     int index = ui->comboBox_camera->currentIndex();
+    connect(cameralist[index],SIGNAL(stateChanged(QCamera::State)),
+                this,SLOT(on_cameraStateChanged(QCamera::State)));
+
     ui->comboBox_camera->setEnabled(false);
     cameralist[index]->setViewfinder(ui->widget);//设置预览框，设置基于QVideoWidget的相机取景器。先前设置的取景器已分离。放在此处时刷新预览框，因为有多个预览框，一旦刷新就会置顶当前预览框
+
     cameralist[index]->start();
 }
 
@@ -115,7 +124,7 @@ void MainWindow::iniImageCapture()
 
 void MainWindow::on_imageReadyForCapture(bool ready)
 {
-        //ui->action_capture->setEnabled(ready);
+   //ui->action_capture->setEnabled(ready);
     Q_UNUSED(ready);
 }
 
@@ -141,6 +150,10 @@ void MainWindow::on_action_capture_triggered()
     if(cameralist[index]->captureMode()!=QCamera::CaptureStillImage)
         cameralist[index]->setCaptureMode(QCamera::CaptureStillImage);  //将相机更改为静态帧模式
 
-    imageCapture->capture();    //捕捉图片并保存到文件中，并发射imageCaptured()、imageSaved() 信号
+    QString fileName = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("保存图片"),
+                                                        QDir::currentPath(),
+                                                        tr("Images (*.jpg)"));
+
+    imageCapture->capture(fileName);    //捕捉图片并保存到文件中，并发射imageCaptured()、imageSaved() 信号
 }
 #endif

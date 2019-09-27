@@ -29,12 +29,22 @@
     <widget class="QCameraViewfinder" name="widget" native="true">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>10</y>
        <width>451</width>
        <height>331</height>
       </rect>
      </property>
+     <widget class="QmyCursor" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>210</x>
+        <y>150</y>
+        <width>21</width>
+        <height>21</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
@@ -159,7 +169,13 @@
   <customwidget>
    <class>QCameraViewfinder</class>
    <extends>QWidget</extends>
-   <header>qcameraviewfinder.h</header>
+   <header location="global">qcameraviewfinder.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QmyCursor</class>
+   <extends>QWidget</extends>
+   <header location="global">qcameraviewfinder.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

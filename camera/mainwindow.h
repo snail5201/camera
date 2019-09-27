@@ -5,6 +5,7 @@
 #include<QCamera>
 #include<QLabel>
 #include<QCameraImageCapture>
+#include<QPainter>
 
 namespace Ui {
 class MainWindow;
@@ -22,6 +23,7 @@ private:
     int index;
     void inicamera(QList<QCameraInfo>  cameras);   //初始化
     void iniImageCapture();
+
 private slots:
     void on_cameraStateChanged(QCamera::State state);
     void on_action_open_triggered();
