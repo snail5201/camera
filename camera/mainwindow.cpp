@@ -93,6 +93,7 @@ void MainWindow::on_action_open_triggered()
                 this,SLOT(on_cameraStateChanged(QCamera::State)));
 
     ui->comboBox_camera->setEnabled(false);
+    ui->refresh->setEnabled(false);
     cameralist[index]->setViewfinder(ui->widget);//设置预览框，设置基于QVideoWidget的相机取景器。先前设置的取景器已分离。放在此处时刷新预览框，因为有多个预览框，一旦刷新就会置顶当前预览框
 
     cameralist[index]->start();
@@ -101,11 +102,12 @@ void MainWindow::on_action_open_triggered()
 void MainWindow::on_action_close_triggered()
 {
     ui->comboBox_camera->setEnabled(true);
+    ui->refresh->setEnabled(true);
     int index = ui->comboBox_camera->currentIndex();
     cameralist[index]->stop();
 }
 
-/****************************************************************/
+/***********************************************************************************************************/
 #if 1
 void MainWindow::iniImageCapture()
 {
@@ -157,3 +159,20 @@ void MainWindow::on_action_capture_triggered()
     imageCapture->capture(fileName);    //捕捉图片并保存到文件中，并发射imageCaptured()、imageSaved() 信号
 }
 #endif
+
+void MainWindow::on_refresh_clicked()
+{
+    for(int i=0;i<cameras.size();i++)
+    {
+        //cameralist[i] = new QCamera(cameras[i],this);    //创建摄像头对象
+        delete cameralist[i];
+    }
+    cameras.clear();
+    ui->comboBox_camera->clear();
+
+    cameras = QCameraInfo::availableCameras();
+    if(cameras.size()>0)
+    {
+        inicamera(cameras);
+    }
+}
