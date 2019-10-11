@@ -16,6 +16,7 @@ class QmyCursor : public QWidget
 public:
     explicit QmyCursor(QWidget *parent = nullptr);
     void disp();
+    void changelinecolor(bool flag);
 private:
     QColor mColorBack=Qt::transparent;   //背景颜色为透明
     QColor mColorline=Qt::green;

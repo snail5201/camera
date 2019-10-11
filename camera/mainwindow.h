@@ -20,7 +20,9 @@ private:
     QLabel *LabCameraState;
     QList<QCameraInfo>  cameras;
     QCamera *cameralist[2];
+    QPalette palette;
     int index;
+    bool flag = true;
     void inicamera(QList<QCameraInfo>  cameras);   //初始化
     void iniImageCapture();
 
@@ -37,6 +39,8 @@ private slots:
     void on_action_capture_triggered();
 #endif
     void on_refresh_clicked();
+
+    void on_refresh_2_clicked();
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);

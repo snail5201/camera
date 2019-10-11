@@ -13,7 +13,12 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->widget_2->disp();
+    ui->widget->setAutoFillBackground(true);
+    //palette.setColor(QPalette::Background, QColor(0,0,0));
+    palette.setBrush(QPalette::Background, Qt::black);
+    ui->widget->setPalette(palette);
+
+    ui->widget_2->changelinecolor(false);
     //将QLabel加入到静态状态栏中
     LabCameraState = new QLabel(QStringLiteral("摄像头状态："));
     LabCameraState->setMinimumWidth(150);
@@ -164,8 +169,8 @@ void MainWindow::on_refresh_clicked()
 {
     for(int i=0;i<cameras.size();i++)
     {
-        //cameralist[i] = new QCamera(cameras[i],this);    //创建摄像头对象
         delete cameralist[i];
+        cameralist[i] = NULL;
     }
     cameras.clear();
     ui->comboBox_camera->clear();
@@ -175,4 +180,21 @@ void MainWindow::on_refresh_clicked()
     {
         inicamera(cameras);
     }
+}
+/**************************************************************************************************/
+void MainWindow::on_refresh_2_clicked()
+{
+    //添加光标
+    if(flag)
+    {
+        ui->refresh_2->setText(QStringLiteral("取消光标"));
+        ui->widget_2->changelinecolor(true);
+        ui->widget_2->disp();
+    }
+    else {
+        ui->refresh_2->setText(QStringLiteral("开启光标"));
+        ui->widget_2->changelinecolor(false);
+        ui->widget_2->disp();
+    }
+    flag = !flag;
 }

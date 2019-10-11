@@ -18,9 +18,9 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>10</y>
+      <y>0</y>
       <width>461</width>
-      <height>351</height>
+      <height>361</height>
      </rect>
     </property>
     <property name="title">
@@ -30,8 +30,8 @@
      <property name="geometry">
       <rect>
        <x>10</x>
-       <y>10</y>
-       <width>451</width>
+       <y>20</y>
+       <width>441</width>
        <height>331</height>
       </rect>
      </property>
@@ -93,6 +93,19 @@
      </property>
      <property name="text">
       <string>刷新</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="refresh_2">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>20</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>开启光标</string>
      </property>
     </widget>
    </widget>

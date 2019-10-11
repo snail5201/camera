@@ -4,7 +4,6 @@ QCameraViewfinder::QCameraViewfinder(QWidget *parent):QVideoWidget(parent)
 {
 
 }
-
 /************************************************************************/
 
 //绘制光标
@@ -40,4 +39,16 @@ void QmyCursor::paintEvent(QPaintEvent *event)
 void QmyCursor::disp()
 {
     update();
+}
+
+void QmyCursor::changelinecolor(bool flag)
+{
+    if(flag)
+    {
+        mColorline = Qt::green;
+    }
+    else
+    {
+        mColorline = Qt::transparent;
+    }
 }
