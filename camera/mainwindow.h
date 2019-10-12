@@ -23,6 +23,7 @@ private:
     QPalette palette;
     int index;
     bool flag = true;
+    bool open_flag = true;
     void inicamera(QList<QCameraInfo>  cameras);   //初始化
     void iniImageCapture();
 

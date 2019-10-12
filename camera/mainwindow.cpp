@@ -13,12 +13,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->action_close->setEnabled(false);
+    ui->action_capture->setEnabled(false);
     ui->widget->setAutoFillBackground(true);
     //palette.setColor(QPalette::Background, QColor(0,0,0));
     palette.setBrush(QPalette::Background, Qt::black);
     ui->widget->setPalette(palette);
 
-    ui->widget_2->changelinecolor(false);
+    ui->widget_2->changelinecolor(false,open_flag);
     //将QLabel加入到静态状态栏中
     LabCameraState = new QLabel(QStringLiteral("摄像头状态："));
     LabCameraState->setMinimumWidth(150);
@@ -89,6 +91,7 @@ void MainWindow::on_cameraStateChanged(QCamera::State state)
 
     ui->action_open->setEnabled(state!=QCamera::ActiveState);
     ui->action_close->setEnabled(state==QCamera::ActiveState);
+    ui->action_capture->setEnabled(state==QCamera::ActiveState);
 }
 
 void MainWindow::on_action_open_triggered()
@@ -99,9 +102,14 @@ void MainWindow::on_action_open_triggered()
 
     ui->comboBox_camera->setEnabled(false);
     ui->refresh->setEnabled(false);
+    ui->widget_2->close_screen(false);
+    ui->widget_2->disp();
+    open_flag = true;
     cameralist[index]->setViewfinder(ui->widget);//设置预览框，设置基于QVideoWidget的相机取景器。先前设置的取景器已分离。放在此处时刷新预览框，因为有多个预览框，一旦刷新就会置顶当前预览框
 
     cameralist[index]->start();
+    ui->refresh_2->setText(QStringLiteral("开启光标"));
+    flag = true;
 }
 
 void MainWindow::on_action_close_triggered()
@@ -110,6 +118,11 @@ void MainWindow::on_action_close_triggered()
     ui->refresh->setEnabled(true);
     int index = ui->comboBox_camera->currentIndex();
     cameralist[index]->stop();
+    open_flag = false;
+    ui->widget_2->close_screen(true);
+    ui->widget_2->disp();
+    ui->refresh_2->setText(QStringLiteral("开启光标"));
+    flag = true;
 }
 
 /***********************************************************************************************************/
@@ -185,15 +198,19 @@ void MainWindow::on_refresh_clicked()
 void MainWindow::on_refresh_2_clicked()
 {
     //添加光标
+    if(open_flag == false)
+    {
+        return;
+    }
     if(flag)
     {
         ui->refresh_2->setText(QStringLiteral("取消光标"));
-        ui->widget_2->changelinecolor(true);
+        ui->widget_2->changelinecolor(true,open_flag);
         ui->widget_2->disp();
     }
     else {
         ui->refresh_2->setText(QStringLiteral("开启光标"));
-        ui->widget_2->changelinecolor(false);
+        ui->widget_2->changelinecolor(false,open_flag);
         ui->widget_2->disp();
     }
     flag = !flag;

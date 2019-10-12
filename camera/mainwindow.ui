@@ -38,10 +38,10 @@
      <widget class="QmyCursor" name="widget_2" native="true">
       <property name="geometry">
        <rect>
-        <x>210</x>
-        <y>150</y>
-        <width>21</width>
-        <height>21</height>
+        <x>0</x>
+        <y>0</y>
+        <width>441</width>
+        <height>331</height>
        </rect>
       </property>
      </widget>

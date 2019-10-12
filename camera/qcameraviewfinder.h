@@ -16,10 +16,12 @@ class QmyCursor : public QWidget
 public:
     explicit QmyCursor(QWidget *parent = nullptr);
     void disp();
-    void changelinecolor(bool flag);
+    void changelinecolor(bool flag,bool screen_open);
+    void close_screen(bool flag);
 private:
     QColor mColorBack=Qt::transparent;   //背景颜色为透明
     QColor mColorline=Qt::green;
+    QColor mColoroutline;                //边框
 protected:
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 signals:
